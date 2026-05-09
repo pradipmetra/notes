@@ -11,3 +11,5 @@ def my_view(request):
 def register(request):
     return render(request, 'registration.html')
 
+def new_function(request):
+    return HttpResponse("hello")
