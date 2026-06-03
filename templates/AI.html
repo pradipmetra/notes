@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyAI Chat</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow:hidden;
+}
+
+/* MAIN LAYOUT */
+
+.container{
+    display:flex;
+    height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:280px;
+    background:rgba(8,10,25,0.95);
+    border-right:1px solid rgba(255,255,255,0.08);
+    padding:25px;
+    position:relative;
+}
+
+.logo{
+    font-size:35px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.subtitle{
+    color:#b3b3b3;
+    margin-top:5px;
+    font-size:14px;
+}
+
+.menu{
+    margin-top:50px;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+    color:white;
+    padding:18px;
+    border-radius:16px;
+    margin-bottom:15px;
+    transition:0.3s;
+    background:transparent;
+}
+
+.menu a:hover,
+.active{
+    background:rgba(139,92,246,0.15);
+    border:1px solid rgba(139,92,246,0.3);
+}
+
+.pro-box{
+    position:absolute;
+    bottom:90px;
+    left:20px;
+    right:20px;
+    background:rgba(17,24,39,0.9);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:25px;
+    text-align:center;
+}
+
+.pro-box button{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#8b5cf6,#7c3aed);
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+}
+
+/* MAIN CONTENT */
+
+.main{
+    flex:1;
+    position:relative;
+    padding:30px;
+    overflow:hidden;
+}
+
+/* BACKGROUND EFFECT */
+
+.main::before{
+    content:'';
+    position:absolute;
+    width:900px;
+    height:900px;
+    background:radial-gradient(circle,#7c3aed55 0%, transparent 70%);
+    top:-300px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:0;
+}
+
+.main::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+    background-size:50px 50px;
+    opacity:0.08;
+    z-index:0;
+}
+
+/* TOP BAR */
+
+.topbar{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:20px;
+    position:relative;
+    z-index:2;
+}
+
+.upgrade-btn{
+    padding:12px 24px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.03);
+    color:white;
+    cursor:pointer;
+}
+
+.profile{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#8b5cf6;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-top:40px;
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:60px;
+    font-weight:700;
+}
+
+.hero span{
+    color:#8b5cf6;
+}
+
+.hero p{
+    color:#bdbdbd;
+    margin-top:10px;
+    font-size:22px;
+}
+
+/* CHAT BOX */
+
+.chat-box{
+    margin-top:40px;
+    position:relative;
+    z-index:2;
+    border:1px solid rgba(139,92,246,0.3);
+    border-radius:30px;
+    background:rgba(12,14,30,0.75);
+    backdrop-filter:blur(15px);
+    overflow:hidden;
+}
+
+/* CHAT HEADER */
+
+.chat-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.bot{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.bot-icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#8b5cf6;
+}
+
+.clear-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,0.05);
+    color:white;
+    cursor:pointer;
+}
+
+/* CHAT BODY */
+
+.chat-body{
+    min-height:450px;
+    position:relative;
+    padding:40px;
+    overflow:hidden;
+}
+
+/* GLOW HORIZON */
+
+.horizon{
+    position:absolute;
+    width:120%;
+    height:300px;
+    background:radial-gradient(circle at center,
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.1),
+    transparent 70%);
+    bottom:-200px;
+    left:-10%;
+    border-radius:50%;
+    filter:blur(10px);
+}
+
+/* CENTER CONTENT */
+
+.center-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    margin-top:30px;
+}
+
+.ai-circle{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(139,92,246,0.2);
+    border:1px solid rgba(139,92,246,0.4);
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:35px;
+    color:#b388ff;
+    box-shadow:0 0 40px rgba(139,92,246,0.5);
+}
+
+.center-content h2{
+    margin-top:25px;
+    color:#a855f7;
+}
+
+.center-content p{
+    color:#cfcfcf;
+    margin-top:10px;
+}
+
+/* SUGGESTIONS */
+
+.suggestions{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.suggestion{
+    padding:18px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.05);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.suggestion:hover{
+    transform:translateY(-5px);
+    border-color:#8b5cf6;
+}
+
+/* INPUT */
+
+.chat-input{
+    padding:25px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    gap:15px;
+}
+
+.chat-input input{
+    flex:1;
+    padding:20px;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,0.03);
+    color:white;
+    outline:none;
+    font-size:16px;
+}
+
+.send-btn{
+    width:65px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(90deg,#8b5cf6,#7c3aed);
+    color:white;
+    cursor:pointer;
+    font-size:22px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .suggestions{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            Study<span>AI</span>
+        </div>
+
+        <div class="subtitle">
+            Your Smart Study Assistant
+        </div>
+
+        <div class="menu">
+
+            <a href="#" class="active">🤖 AI Chat</a>
+
+            <a href="#">📝 Summarizer</a>
+
+            <a href="#">🕒 History</a>
+
+        </div>
+
+
+        <div class="logout">
+            <a href="{% url 'logout' %}" style="color:white; text-decoration:none;">
+                🚪 Logout
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+
+
+        <div class="hero">
+
+            <h1>Hello👋</h1>
+
+            <p>
+                Ask me anything. I’m here to help you learn smarter.
+            </p>
+
+        </div>
+
+        <!-- CHAT -->
+
+        <div class="chat-box">
+
+            <div class="chat-header">
+
+                <div class="bot">
+
+                    <div>
+                        <h3>StudyAI</h3>
+                    </div>
+
+                </div>
+
+                <button class="clear-btn">
+                    🗑 Clear Chat
+                </button>
+
+            </div>
+
+            <div class="chat-body">
+
+                <div class="horizon"></div>
+
+                <div class="center-content">
+
+                    <div class="ai-circle">
+                        ✦
+                    </div>
+
+                    <h2>Hi! I’m StudyAI</h2>
+
+                    <p>How can I help you today?</p>
+
+                    <div class="suggestions">
+
+                        <div class="suggestion">
+                            🌿 Explain photosynthesis
+                        </div>
+
+                        <div class="suggestion">
+                            🐍 What is Python?
+                        </div>
+
+                        <div class="suggestion">
+                            💾 What is DBMS?
+                        </div>
+
+                        <div class="suggestion">
+                            🧮 Solve this math problem
+                        </div>
+
+                        <div class="suggestion">
+                            📄 Summarize this topic
+                        </div>
+
+                        <div class="suggestion">
+                            📅 Give me a study plan
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chat-input">
+
+                <input type="text" placeholder="Type your question here...">
+
+                <button class="send-btn">
+                    ➤
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

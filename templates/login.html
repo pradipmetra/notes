@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        background: #0f172a;
+        position: relative;
+    }
+
+    /* ANIMATED BACKGROUND */
+    body::before,
+    body::after{
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(100px);
+        animation: move 10s infinite alternate;
+    }
+
+    body::before{
+        background: #0c9a9f;
+        top: -150px;
+        left: -150px;
+    }
+
+    body::after{
+        background: #07e378;
+        bottom: -150px;
+        right: -150px;
+        animation-delay: 5s;
+    }
+
+    @keyframes move{
+        0%{
+            transform: translate(0,0) scale(1);
+        }
+        100%{
+            transform: translate(80px,50px) scale(1.2);
+        }
+    }
+
+    /* FLOATING PARTICLES */
+    .particles span{
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: rgba(255,255,255,0.15);
+        animation: animate 20s linear infinite;
+        bottom: -150px;
+        border-radius: 50%;
+    }
+
+    .particles span:nth-child(1){
+        left:10%;
+        width:40px;
+        height:40px;
+        animation-duration:15s;
+    }
+
+    .particles span:nth-child(2){
+        left:25%;
+        width:25px;
+        height:25px;
+        animation-duration:18s;
+    }
+
+    .particles span:nth-child(3){
+        left:40%;
+        animation-duration:12s;
+    }
+
+    .particles span:nth-child(4){
+        left:60%;
+        width:35px;
+        height:35px;
+        animation-duration:20s;
+    }
+
+    .particles span:nth-child(5){
+        left:75%;
+        animation-duration:14s;
+    }
+
+    .particles span:nth-child(6){
+        left:90%;
+        width:30px;
+        height:30px;
+        animation-duration:16s;
+    }
+
+    @keyframes animate{
+        0%{
+            transform: translateY(0) rotate(0deg);
+            opacity:0;
+        }
+        10%{
+            opacity:1;
+        }
+        100%{
+            transform: translateY(-1000px) rotate(360deg);
+            opacity:0;
+        }
+    }
+
+    .container {
+        width: 400px;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 30px;
+        border-radius: 20px;
+        color: white;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        text-align:center;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(45deg,#00c6ff,#0072ff);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.03);
+    }
+
+    .link {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    a {
+        color: #00f5ff;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <input type="text" name="username" placeholder="Enter your username" required>
+        
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="link">
+        Don’t have an account? <a href="{% url 'registration' %}">Register</a>
+    </div>
+</div>
+<div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+</body>
+</html>

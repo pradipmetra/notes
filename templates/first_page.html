@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth Page</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(270deg,#1abc9c,#3498db,#9b59b6);
+    background-size:600% 600%;
+    animation: bgMove 10s ease infinite;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:800px;
+    height:500px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius:15px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+    display:flex;
+    overflow:hidden;
+    position:relative;
+}
+
+/* sliding panel */
+.slider{
+    position:absolute;
+    width:50%;
+    height:100%;
+    background: linear-gradient(135deg,#1abc9c,#3498db);
+    transition:0.6s;
+    z-index:2;
+}
+
+.container.active .slider{
+    transform: translateX(100%);
+}
+
+/* left and right */
+.form-container{
+    width:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:20px;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#fff;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:#1abc9c;
+    color:#fff;
+    border-radius:5px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#16a085;
+}
+
+/* text panel */
+.panel{
+    position:absolute;
+    width:50%;
+    height:100%;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    z-index:3;
+}
+
+.panel.left{
+    left:0;
+    
+    
+}
+
+.panel.right{
+    right:0;
+}
+
+/* toggle button */
+.switch{
+    margin-top:10px;
+    background:transparent;
+    border:2px solid #fff;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container" id="container">
+
+    <div class="slider"></div>
+
+    <!-- Login -->
+    <div class="form-container">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+    </div>
+
+    <!-- Register -->
+    <div class="form-container">
+        <h2>Register If New User</h2>
+        <a href="{% url 'registration' %}">
+        <button>Register</button>
+        </a>
+    </div>
+
+    <!-- Left Panel -->
+    <div class="panel left">
+        <h2>Welcome Back 👋</h2>
+        <p>Already have an account?</p>
+        <a href="{% url 'loginn' %}">
+        <button class="switch"  >Login</button>
+        </a>
+    </div>
+        
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
