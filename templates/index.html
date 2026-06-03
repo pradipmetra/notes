@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Homepage</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* Underline animation */
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #1abc9c;
+            left: 0;
+            bottom: -5px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .navbar a:hover {
+            color: #1abc9c;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to right, #1abc9c, #3498db);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            transition: 0.3s;
+        }
+
+        .hero h1:hover {
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        /* Card hover lift */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Skills */
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Image */
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            transition: 0.4s;
+        }
+
+        /* Image zoom */
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #1abc9c;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #16a085;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .navbar a {
+                display: block;
+                margin: 10px 0;
+            }
+            .navbar .register-btn {
+                background: #1abc9c;
+                padding: 6px 12px;
+                border-radius: 5px;
+            }
+            .navbar .register-btn:hower {
+                background: #16a085;
+                color: white;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="{% url 'registration' %}">Register</a>
+</button>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Welcome to My Website</h1>
+        <p>I am learning Django 🚀</p>
+        <a href="#" class="btn">Explore</a>
+    </div>
+
+
+
+    <!-- Content -->
+    <div class="container">
+
+        <div class="card">
+            <h2>About Me</h2>   
+            <p>Hello! My name is Pradip. I am a BCA student and learning HTML, Python, and more.</p>
+        </div>
+
+        <div class="card">
+            <h2>My Skills</h2>
+            <ul>
+                <li>HTML</li>
+                <li>Python</li>
+                <li>C#</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2026 My Website | All Rights Reserved</p>
+    </div>
+
+</body>
+</html>
